@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CalorieLens Firestore Schema",
+  "entities": {
+    "User": {
+      "path": "users/{userId}",
+      "description": "User profile, personalized calorie targets, macro goals, and hydration stats.",
+      "fields": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "dailyCalories": { "type": "number" },
+        "proteinGrams": { "type": "number" },
+        "carbsGrams": { "type": "number" },
+        "fatGrams": { "type": "number" },
+        "waterGoalMl": { "type": "number" },
+        "currentWaterMl": { "type": "number" },
+        "targetWeightKg": { "type": "number" },
+        "goalType": { "type": "string" },
+        "createdAt": { "type": "timestamp" },
+        "updatedAt": { "type": "timestamp" }
+      },
+      "required": ["userId", "dailyCalories", "proteinGrams", "carbsGrams", "fatGrams"]
+    },
+    "MealLog": {
+      "path": "users/{userId}/meals/{mealId}",
+      "description": "Individual meal record logged by user with calculated calories and macros.",
+      "fields": {
+        "userId": { "type": "string" },
+        "mealType": { "type": "string" },
+        "dateString": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "totalCalories": { "type": "number" },
+        "totalProtein": { "type": "number" },
+        "totalCarbs": { "type": "number" },
+        "totalFat": { "type": "number" },
+        "totalFiber": { "type": "number" },
+        "photoUri": { "type": "string", "optional": true },
+        "notes": { "type": "string", "optional": true },
+        "itemsJson": { "type": "string" },
+        "createdAt": { "type": "timestamp" },
+        "updatedAt": { "type": "timestamp" }
+      },
+      "required": ["userId", "mealType", "dateString", "timestamp", "totalCalories", "itemsJson"]
+    }
+  }
+}

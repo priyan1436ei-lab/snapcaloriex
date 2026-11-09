@@ -1,0 +1,6 @@
+{
+  "name": "CalorieLens",
+  "description": "AI food tracker and calorie counter. Snap a meal photo, speak a voice note, or search foods to instantly track calories, macros, and nutrition history.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

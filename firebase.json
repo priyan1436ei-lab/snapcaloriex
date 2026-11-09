@@ -1,0 +1,16 @@
+{
+  "firestore": [
+    {
+      "database": "ai-studio-android-snapcalo-815cd54c-5f59-40ac-b9bf-d70ed4e8f930",
+      "rules": "firestore.rules"
+    }
+  ],
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8085
+    }
+  }
+}

@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidUser(data) {
+      return data.userId == request.auth.uid &&
+             data.dailyCalories is number && data.dailyCalories > 0 &&
+             data.proteinGrams is number && data.proteinGrams >= 0 &&
+             data.carbsGrams is number && data.carbsGrams >= 0 &&
+             data.fatGrams is number && data.fatGrams >= 0;
+    }
+
+    function isValidMeal(data, userId) {
+      return data.userId == userId &&
+             data.mealType is string &&
+             data.dateString is string &&
+             data.timestamp is number &&
+             data.totalCalories is number && data.totalCalories >= 0 &&
+             data.itemsJson is string;
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidUser(request.resource.data);
+      allow delete: if isOwner(userId);
+
+      match /meals/{mealId} {
+        allow read: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidMeal(request.resource.data, userId);
+        allow delete: if isOwner(userId);
+      }
+    }
+  }
+}
