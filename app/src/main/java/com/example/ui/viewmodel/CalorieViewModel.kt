@@ -35,6 +35,7 @@ class CalorieViewModel(application: Application) : AndroidViewModel(application)
     private val repository = CalorieRepository(application)
     val authManager = com.example.data.firebase.FirebaseAuthManager(application)
     val firestoreSyncService = com.example.data.firebase.FirestoreSyncService(application)
+    val supabaseClient = com.example.data.supabase.SupabaseClient()
 
     val currentUser = authManager.currentUser
     val isAuthLoading = authManager.isLoading

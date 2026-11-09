@@ -237,6 +237,78 @@ fun ProfileGoalsScreen(
             }
         }
 
+        // Supabase Cloud Backend Card
+        item {
+            var showSupabaseDialog by remember { mutableStateOf(false) }
+
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("supabase_backend_card"),
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(containerColor = SlateCard),
+                border = CardDefaults.outlinedCardBorder().copy(
+                    brush = androidx.compose.ui.graphics.SolidColor(SlateCardStroke)
+                )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            shape = CircleShape,
+                            color = EmeraldPrimary.copy(alpha = 0.15f),
+                            modifier = Modifier.size(42.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text(text = "⚡", fontSize = 18.sp)
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column {
+                            Text(
+                                text = "Supabase PostgreSQL",
+                                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                                color = TextPrimary
+                            )
+                            Text(
+                                text = "https://seitqpvjeztdnbizxjyg.supabase.co",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = EmeraldPrimary,
+                                maxLines = 1
+                            )
+                        }
+                    }
+
+                    Button(
+                        onClick = { showSupabaseDialog = true },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = SlateSubtle.copy(alpha = 0.5f),
+                            contentColor = TextPrimary
+                        ),
+                        shape = RoundedCornerShape(10.dp),
+                        contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+                    ) {
+                        Text("Manage", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
+            }
+
+            if (showSupabaseDialog) {
+                com.example.ui.components.SupabaseConfigDialog(
+                    supabaseClient = viewModel.supabaseClient,
+                    onDismiss = { showSupabaseDialog = false }
+                )
+            }
+        }
+
         // Primary Goal Type
         item {
             Card(
