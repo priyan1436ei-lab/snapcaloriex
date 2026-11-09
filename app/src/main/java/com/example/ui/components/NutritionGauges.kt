@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -56,32 +57,47 @@ fun CalorieRingCard(
         label = "calorie_progress"
     )
 
+    val gradientBrush = remember {
+        androidx.compose.ui.graphics.Brush.sweepGradient(
+            listOf(
+                com.example.ui.theme.EmeraldDark,
+                com.example.ui.theme.EmeraldPrimary,
+                com.example.ui.theme.MintGlow,
+                com.example.ui.theme.EmeraldDark
+            )
+        )
+    }
+
     Card(
         modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(26.dp),
         colors = CardDefaults.cardColors(containerColor = SlateCard),
-        border = CardDefaults.outlinedCardBorder().copy(brush = androidx.compose.ui.graphics.SolidColor(SlateCardStroke))
+        border = CardDefaults.outlinedCardBorder().copy(
+            brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+                listOf(SlateCardStroke.copy(alpha = 0.9f), SlateCardStroke.copy(alpha = 0.3f))
+            )
+        )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(22.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = Modifier.size(190.dp)
+                modifier = Modifier.size(200.dp)
             ) {
-                Canvas(modifier = Modifier.size(170.dp)) {
-                    val strokeWidth = 14.dp.toPx()
+                Canvas(modifier = Modifier.size(175.dp)) {
+                    val strokeWidth = 15.dp.toPx()
                     // Track circle
                     drawCircle(
-                        color = SlateSubtle.copy(alpha = 0.5f),
+                        color = SlateSubtle.copy(alpha = 0.35f),
                         style = Stroke(width = strokeWidth)
                     )
-                    // Progress arc
+                    // Progress arc with glowing gradient
                     drawArc(
-                        color = EmeraldPrimary,
+                        brush = gradientBrush,
                         startAngle = -90f,
                         sweepAngle = animatedProgress * 360f,
                         useCenter = false,
@@ -95,20 +111,21 @@ fun CalorieRingCard(
                     Text(
                         text = "$remaining",
                         style = MaterialTheme.typography.displayLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 38.sp
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 42.sp,
+                            letterSpacing = (-1).sp
                         ),
                         color = TextPrimary
                     )
                     Text(
                         text = "kcal remaining",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = TextSecondary
+                        style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
+                        color = EmeraldPrimary
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),

@@ -2,29 +2,31 @@ package com.example.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Brand Primary & Energy Colors
-val EmeraldPrimary = Color(0xFF00D084)
-val EmeraldLight = Color(0xFF33DA9C)
-val EmeraldDark = Color(0xFF00A366)
+// Brand Primary & Energy Colors (Vibrant Cyber-Emerald & Mint Accents)
+val EmeraldPrimary = Color(0xFF10E79D)
+val EmeraldLight = Color(0xFF4FFFC1)
+val EmeraldDark = Color(0xFF05B676)
+val MintGlow = Color(0xFF00F5A0)
 
-// Macronutrient Colors (SnapCalorie Signature Accents)
-val ProteinCoral = Color(0xFFFF5353)
-val ProteinCoralLight = Color(0xFFFF8585)
-val CarbsAmber = Color(0xFFFFB020)
-val CarbsAmberLight = Color(0xFFFFC966)
-val FatCyan = Color(0xFF00B4D8)
-val FatCyanLight = Color(0xFF48CAE4)
-val WaterBlue = Color(0xFF0096C7)
+// Macronutrient Colors (High-Contrast Clean Accents)
+val ProteinCoral = Color(0xFFFF5252)
+val ProteinCoralLight = Color(0xFFFF7B7B)
+val CarbsAmber = Color(0xFFFFB300)
+val CarbsAmberLight = Color(0xFFFFCA28)
+val FatCyan = Color(0xFF00E5FF)
+val FatCyanLight = Color(0xFF80D8FF)
+val WaterBlue = Color(0xFF00B0FF)
 
-// Neutral & Surface Dark Shades (Modern Slate Palette)
-val SlateBackground = Color(0xFF0F141A)
-val SlateSurface = Color(0xFF181F28)
-val SlateCard = Color(0xFF212A36)
-val SlateCardStroke = Color(0xFF2E3947)
-val SlateSubtle = Color(0xFF3B4859)
+// Neutral & Surface Dark Shades (Deep Premium Obsidian Palette)
+val SlateBackground = Color(0xFF0B0F15)
+val SlateSurface = Color(0xFF121820)
+val SlateCard = Color(0xFF1A222D)
+val SlateCardStroke = Color(0xFF283445)
+val SlateSubtle = Color(0xFF37465B)
+val SlateGlow = Color(0x3310E79D)
 
 // Text Colors
-val TextPrimary = Color(0xFFFFFFFF)
+val TextPrimary = Color(0xFFF8FAFC)
 val TextSecondary = Color(0xFF94A3B8)
 val TextTertiary = Color(0xFF64748B)
 

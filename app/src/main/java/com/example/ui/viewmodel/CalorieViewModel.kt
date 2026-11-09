@@ -31,6 +31,7 @@ sealed class ScannerStep {
     ) : ScannerStep()
 }
 
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class CalorieViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = CalorieRepository(application)
     val authManager = com.example.data.firebase.FirebaseAuthManager(application)
